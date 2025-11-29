@@ -1,0 +1,37 @@
+services:
+  # -------------------------------------
+  # BACKEND SERVICE (FLASK)
+  # -------------------------------------
+  - name: adoodle-backend
+    type: web
+    rootDirectory: Backend
+    env: python
+    buildCommand: "pip install -r requirements.txt"
+    startCommand: "gunicorn app:app --bind 0.0.0.0:$PORT --workers 3"
+    
+    persistentDisk:
+      mountPath: /opt/render/project/data
+      sizeGB: 5
+
+    envVars:
+      - key: RENDER
+        value: "true"
+      - key: JWT_SECRET
+        value: "change-this-to-strong-secret"
+      - key: SUPER_ADMIN_EMAIL
+        value: "admin@example.com"
+      - key: SUPER_ADMIN_PW
+        value: "admin123"
+
+  # -------------------------------------
+  # FRONTEND SERVICE (VITE)
+  # -------------------------------------
+  - name: adoodle-frontend
+    type: web
+    rootDirectory: Frontend
+    env: static
+    buildCommand: "npm install && npm run build"
+    publishPath: dist
+    envVars:
+      - key: VITE_API_BASE
+        value: "https://adoodle-backend.onrender.com"

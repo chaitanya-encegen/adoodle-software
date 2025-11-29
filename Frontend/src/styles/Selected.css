@@ -1,0 +1,261 @@
+/* ========== PAGE WRAPPER ========== */
+.selected-page {
+  padding: 20px;
+  font-family: "Inter", sans-serif;
+  background: #f6f9ff;
+  min-height: 100vh;
+
+}
+.heading{
+  color: #123fab;
+  margin-left:45%;
+  display: flex;
+}
+/* ========== TITLE SECTION ========== */
+.chip-header {
+  margin-bottom: 15px;
+}
+
+.chip-title {
+  background: #3b5bff;
+  color: #fff;
+  padding: 8px 18px;
+  border-radius: 25px;
+  font-weight: 600;
+  font-size: 15px;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.18);
+}
+
+/* ========== CHIPS ========== */
+.chip-container {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+  margin-bottom: 25px;
+}
+
+.chip-item {
+  background: white;
+  border-radius: 30px;
+  padding: 7px 14px;
+  font-size: 14px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 7px;
+  border: 1px solid #e2e6ff;
+  box-shadow: 0 3px 8px rgba(0, 0, 0, 0.12);
+  transition: 0.2s ease;
+}
+
+.chip-item:hover {
+  transform: translateY(-2px);
+}
+
+.active-chip {
+  background: #dbe2ff;
+  border: 1px solid #3b5bff;
+}
+
+.chip-count {
+  background: #3b5bff;
+  color: white;
+  font-size: 11px;
+  padding: 2px 6px;
+  border-radius: 50px;
+}
+
+.chip-remove {
+  margin-left: 5px;
+  background: #ff4a4a;
+  color: #fff;
+  border-radius: 50%;
+  width: 17px;
+  height: 17px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 13px;
+  cursor: pointer;
+}
+
+/* ========== ACTION BUTTONS ========== */
+/* Buttons appear ONLY when a table is selected */
+.actions-row-top {
+  display: flex;
+  gap: 12px;
+  margin: 15px 0 18px 0;
+}
+
+.actions-row-top button {
+  border-radius: 40px;
+  font-size: 14px;
+  padding: 10px 18px;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  border: none;
+  cursor: pointer;
+  font-weight: 500;
+  transition: 0.2s ease;
+}
+
+/* BUTTON COLORS */
+.btn-white {
+  background: white;
+  border: 1px solid #d3d9ff;
+  color: #444;
+}
+.btn-white:hover { background: #eef1ff; }
+
+.btn-excel {
+  background: #40b883;
+  color: white;
+}
+.btn-excel:hover { background: #2fa06f; }
+
+.btn-word {
+  background: #1d4ed8;
+  color: white;
+}
+.btn-word:hover { background: #123fab; }
+
+.btn-email {
+  background: #3b5bff;
+  color: white;
+}
+.btn-email:hover { background: #2f49d6; }
+
+/* ========== TABLE WRAPPER ========== */
+.table-wrap {
+  width: 100%;
+  overflow-x: auto;
+  border-radius: 12px;
+  background: #ffffff;
+  padding: 0;
+  box-shadow: 0 4px 14px rgba(0,0,0,0.15);
+}
+
+/* Table */
+.selected-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 14px;
+}
+
+/* HEADER */
+.selected-table thead tr {
+  background: #3b5bff;
+  color: white;
+}
+
+.selected-table th,
+.selected-table td {
+  padding: 12px 14px;
+  border-bottom: 1px solid #e2e6ff;
+  text-align: left;
+}
+
+.selected-table tbody tr:nth-child(even) {
+  background: #f0f3ff;
+}
+
+/* Scrollable property column */
+.prop-col {
+  max-width: 250px;
+}
+.prop-text {
+  max-height: 70px;
+  overflow-y: auto;
+  padding-right: 4px;
+}
+
+/* Amount column */
+.amount-col {
+  text-align: right;
+  font-weight: 600;
+}
+
+/* Delete button */
+.delete-action {
+  background: #ff3c3c;
+  color: white;
+  border: none;
+  padding: 6px 12px;
+  border-radius: 8px;
+  cursor: pointer;
+  font-size: 13px;
+}
+.delete-action:hover {
+  background: #e82b2b;
+}
+
+/* ========== EMPTY STATE (NO DATA) ========== */
+
+.empty-state {
+  padding: 60px 20px;
+  text-align: center;
+  color: #7b88a8;
+}
+
+.empty-state .empty-icon {
+  font-size: 55px;
+  color: #c3ccee;
+  margin-bottom: 15px;
+}
+
+.empty-state-title {
+  font-size: 20px;
+  font-weight: 600;
+  color: #3d4c73;
+}
+
+.empty-state-sub {
+  margin-top: 6px;
+  font-size: 14px;
+  opacity: 0.7;
+}
+/* ========== BACK BUTTON ========== */
+.back-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  margin-top: 25px;
+  text-decoration: none;
+  color: #3b5bff;
+  font-weight: 600;
+}
+.back-btn:hover {
+  text-decoration: underline;
+}
+
+/* ========== TOASTS ========== */
+.toast-wrap {
+  position: fixed;
+  top: 20px;
+  right: 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  z-index: 999;
+}
+
+.toast {
+  padding: 10px 14px;
+  border-radius: 8px;
+  color: white;
+  font-size: 14px;
+  min-width: 130px;
+  text-align: center;
+  box-shadow: 0 3px 6px rgba(0,0,0,0.15);
+  animation: fadeIn 0.3s ease;
+}
+
+.toast-info { background: #3b5bff; }
+.toast-success { background: #30c76b; }
+.toast-error { background: #ff3b3b; }
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(-10px); }
+  to { opacity: 1; transform: translateY(0); }
+}

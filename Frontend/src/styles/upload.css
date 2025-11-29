@@ -1,0 +1,106 @@
+.upload-page {
+  background: #eef2f7;
+  min-height: 100vh;
+  padding-top: 40px;
+}
+
+.upload-wrapper {
+  width: 80%;
+  max-width: 900px;
+  background: #fff;
+  margin: auto;
+  padding: 40px 30px;
+  border-radius: 16px;
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.1);
+  text-align: center;
+}
+
+.upload-title {
+  font-size: 32px;
+  font-weight: 700;
+  color: #2b55ff;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 25px;
+}
+
+.upload-icon {
+  font-size: 34px;
+}
+.table-name-box {
+  display: flex;
+  flex-direction: column;
+  margin: 20px 0;
+}
+
+.table-name-box label {
+  font-size: 15px;
+  font-weight: 600;
+  color: #333;
+  margin-bottom: 6px;
+}
+
+.table-input {
+  width: 60%;
+  padding: 12px 14px;
+  margin-left: 180px;
+  border: 2px solid #e2e2e2;
+  border-radius: 10px;
+  font-size: 15px;
+  background: #fafafa;
+  transition: all 0.25s ease;
+}
+
+.table-input:focus {
+  border-color: #3b82f6; /* Blue border */
+  background: #ffffff;
+  box-shadow: 0 0 6px rgba(59, 130, 246, 0.4);
+  outline: none;
+}
+
+.table-input::placeholder {
+  color: #9ca3af;
+  font-size: 14px;
+}
+
+.drop-area {
+  border: 3px dashed #1e90ff;
+  background: #e6f7ff;
+  padding: 70px 20px;
+  border-radius: 14px;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+.drag-over {
+  background: #d9f0ff;
+  border-color: #0b7dda;
+}
+
+.file-input {
+  display: none;
+}
+
+.drag-title {
+  margin: 0;
+  font-size: 20px;
+}
+
+.browse-text {
+  margin-top: 8px;
+  color: #666;
+}
+
+.browse-link {
+  color: #2b55ff;
+  cursor: pointer;
+  text-decoration: underline;
+}
+
+.upload-status {
+  margin-top: 20px;
+  color: #333;
+  font-size: 16px;
+}

@@ -1,0 +1,14 @@
+Flask
+Flask-Cors
+Flask-SQLAlchemy
+Flask-Mail
+itsdangerous
+Werkzeug
+googletrans==4.0.0-rc1
+openpyxl
+xlrd==1.2.0
+pandas
+bcrypt
+PyJWT
+python-docx
+bs4

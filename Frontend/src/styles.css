@@ -1,0 +1,24 @@
+/* styles.css - keep the same theme as your HTML */
+:root { --blue:#4e72e0; --muted:#94a3b8; --card:#fff; }
+body { font-family: Inter, Arial, sans-serif; background:#f4f6f9; margin:0; padding:0; color:#243044; }
+body {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  overflow-x: hidden; /* prevent horizontal scroll */
+}
+* {
+  box-sizing: border-box;
+}
+
+.brand { font-weight:700;font-size:20px; }
+.container { max-width:1480px; margin:26px auto; padding:18px; }
+.card { background:var(--card); padding:22px; border-radius:12px; box-shadow:0 8px 30px rgba(0,0,0,0.04); margin-top:18px; }
+.btn { background:var(--blue); color:#fff; padding:10px 14px; border-radius:28px; border:none; cursor:pointer; font-weight:700; }
+.input { padding:8px 10px; border-radius:8px; border:1px solid #e6eefc; }
+.table { width:100%; border-collapse:collapse; margin-top:18px; }
+.table th { background:var(--blue); color:#fff; padding:10px; text-align:left; }
+.table td { padding:10px; border:1px solid #eef3ff; vertical-align:top; font-size:13px; }
+.small { font-size:13px; color:var(--muted); }
+
+

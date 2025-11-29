@@ -1,0 +1,25 @@
+# --- React / Vite ---
+node_modules/
+dist/
+.cache/
+vite.config.js.timestamp*
+
+# --- Flask / Python ---
+__pycache__/
+*.pyc
+*.pyo
+venv/
+instance/
+.env
+.env.local
+.env.*.local
+
+# --- Render ---
+build/
+.DS_Store
+
+# --- Logs ---
+*.log
+
+# --- OS Files ---
+Thumbs.db

@@ -1,0 +1,103 @@
+/* Global Font */
+* {
+  font-family: "Inter", sans-serif;
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+/* ========================= */
+/* PUBLIC HERO SECTION */
+/* ========================= */
+
+.home-hero {
+  height: 100vh;
+  width: 100%;
+  background: linear-gradient(135deg, #1e2a78 0%, #3974df 100%);
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  padding: 24px;
+  color: white;
+}
+
+.hero-content h1 {
+  font-size: 40px;
+  font-weight: 700;
+  margin-bottom: 16px;
+}
+
+.subtitle {
+  font-size: 18px;
+  font-weight: 400;
+  opacity: 0.9;
+  margin-bottom: 24px;
+}
+
+/* Main Button */
+.get-started-btn {
+  display: inline-block;
+  padding: 14px 26px;
+  text-decoration: none;
+  color: white;
+  font-size: 15px;
+  font-weight: 600;
+  border-radius: 10px;
+  box-shadow:2px #ebe3dd;
+  background:blue;
+  transition: 0.2s ease;
+}
+
+.get-started-btn:hover {
+  background: #111827;
+}
+
+/* ========================= */
+/* DASHBOARD SECTION */
+/* ========================= */
+
+.home-dashboard {
+  height: 100vh;
+  padding-top: 120px;
+  text-align: center;
+  background: linear-gradient(#2a4977,#92b2f7,#638de7);
+  margin-bottom: -36px;
+}
+
+.home-dashboard h1 {
+  font-size: 32px;
+  font-weight: 700;
+  color: #ebe3dd;
+  margin-bottom: 12px;
+}
+
+.home-dashboard .subtitle {
+  color: #000000;
+  margin-bottom: 24px;
+}
+
+/* ========================= */
+/* RESPONSIVE */
+/* ========================= */
+
+@media (max-width: 768px) {
+  .hero-content h1 {
+    font-size: 30px;
+  }
+
+  .subtitle {
+    font-size: 16px;
+  }
+
+  .get-started-btn {
+    padding: 12px 20px;
+    font-size: 14px;
+  }
+
+  .home-dashboard h1 {
+    font-size: 26px;
+  }
+}
+

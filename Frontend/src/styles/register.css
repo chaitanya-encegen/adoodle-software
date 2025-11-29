@@ -1,0 +1,59 @@
+.register-container {
+  display: flex;
+  justify-content: center;
+  padding-top: 50px;
+}
+
+.register-card {
+  width: 420px;
+  background: #fff;
+  padding: 30px;
+  border-radius: 14px;
+  box-shadow: 0 4px 20px rgba(0,0,0,0.1);
+}
+
+.register-card h1 {
+  text-align: center;
+  margin-bottom: 20px;
+  font-size: 22px;
+}
+
+.register-form {
+  display: flex;
+  flex-direction: column;
+}
+
+.register-input,
+.register-textarea {
+  margin-bottom: 12px;
+  padding: 10px;
+  border-radius: 8px;
+  border: 1px solid #ccc;
+}
+
+.register-textarea {
+  height: 70px;
+  resize: none;
+}
+
+.register-checkbox {
+  margin-bottom: 16px;
+  font-size: 14px;
+  display: flex;
+  gap: 8px;
+  align-items: center;
+}
+
+.register-btn {
+  padding: 10px;
+  background: #1a232c;
+  border-radius: 8px;
+  color: white;
+  border: none;
+  cursor: pointer;
+  font-size: 15px;
+}
+
+.register-btn:hover {
+  background: #006ae0;
+}

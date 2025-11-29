@@ -1,0 +1,63 @@
+/* ---- NAVBAR MAIN WRAPPER ---- */
+.topbar {
+  width: 100%;
+  height: 64px;
+  background: linear-gradient(90deg, #1a1a1b, #223a5e,#3e3152);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0 32px;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.15);
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+}
+
+/* ---- BRAND NAME ---- */
+.brand {
+  font-size: 22px;
+  font-weight: 700;
+  color: #fdf6f6;
+  letter-spacing: 0.5px;
+  cursor: pointer;
+}
+
+/* ---- NAV LINK STYLING ---- */
+.topbar a {
+  color: #f5f6f8;
+  text-decoration: none;
+  font-size: 15px;
+  font-weight: 300;
+  font-family:  Arial, sans-serif;
+  transition: 0.25s ease;
+  padding: 6px 10px;
+  border-radius: 6px;
+}
+
+.topbar a:hover {
+  color: white;
+  background: rgba(255, 255, 255, 0.10);
+}
+
+/* ---- LOGOUT BUTTON ---- */
+.topbar button {
+  background: #ef4444; /* red */
+  color: white;
+  border: none;
+  padding: 8px 14px;
+  font-size: 14px;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: 0.25s ease;
+}
+
+.topbar button:hover {
+  background: #dc2626;
+}
+
+/* ---- STATUS TEXT (Welcome / Logged In) ---- */
+.topbar div:last-child {
+  color: #cbd5e1 !important;
+  font-size: 14px;
+  margin-left: 30px;
+}
