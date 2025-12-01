@@ -38,7 +38,4 @@ services:
 
     envVars:
       - key: VITE_API_BASE
-        fromService:
-          name: adoodle-backend
-          type: web
-          property: url
+        value: "https://adoddle-backend.onrender.com"
