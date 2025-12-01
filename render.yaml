@@ -1,17 +1,14 @@
 services:
-  # -------------------------------------
-  # BACKEND SERVICE (FLASK)
-  # -------------------------------------
+  # ============================
+  # BACKEND (FLASK)
+  # ============================
   - name: adoodle-backend
     type: web
-    rootDirectory: Backend
-    env: python
-    buildCommand: "pip install -r requirements.txt"
-    startCommand: "gunicorn app:app --bind 0.0.0.0:$PORT --workers 3"
-    
-    persistentDisk:
-      mountPath: /opt/render/project/data
-      sizeGB: 5
+    runtime: python
+    repo: https://github.com/chaitanya-encegen/adoodle-software
+    rootDir: Backend
+    buildCommand: pip install -r requirements.txt
+    startCommand: gunicorn app:app --bind 0.0.0.0:$PORT --workers 3
 
     envVars:
       - key: RENDER
@@ -23,15 +20,25 @@ services:
       - key: SUPER_ADMIN_PW
         value: "admin123"
 
-  # -------------------------------------
-  # FRONTEND SERVICE (VITE)
-  # -------------------------------------
+    disk:
+      name: backend_disk
+      mountPath: /opt/render/project/data
+      sizeGB: 5
+
+  # ============================
+  # FRONTEND (VITE)
+  # ============================
   - name: adoodle-frontend
     type: web
-    rootDirectory: Frontend
-    env: static
-    buildCommand: "npm install && npm run build"
-    publishPath: dist
+    runtime: static
+    repo: https://github.com/chaitanya-encegen/adoodle-software
+    rootDir: Frontend
+    buildCommand: npm install && npm run build
+    staticPublishPath: dist
+
     envVars:
       - key: VITE_API_BASE
-        value: "https://adoodle-backend.onrender.com"
+        fromService:
+          name: adoodle-backend
+          type: web
+          property: url
