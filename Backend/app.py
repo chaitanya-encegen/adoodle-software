@@ -367,7 +367,7 @@ def admin_list_users():
     return jsonify({'users': out}), 200
 
 
-@app.route('/admin/create_user', methods=['POST'])
+@app.route('https://adoodle-backend.onrender.com/admin/create_user', methods=['POST'])
 @admin_required
 def admin_create_user():
     data = request.get_json(force=True)
