@@ -81,7 +81,7 @@ useEffect(() => {
   // Highlight matching text safely
   function highlight(text) {
     if (!text) return text;
-    const searchWords = [q, purchaser, seller, docname, docno]
+    const searchWords = [q, purchaser, seller, docname, docno,propertyDesc,registrationdate   ]
       .filter((x) => x && x.trim() !== "");
 
     if (searchWords.length === 0) return text;

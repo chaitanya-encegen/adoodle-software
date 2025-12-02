@@ -137,7 +137,18 @@ def start_cleanup_thread():
     Thread(target=worker, daemon=True).start()
 
 app = create_app()
-CORS(app)
+CORS(app, resources={
+    r"/*": {
+        "origins": [
+            "https://adoodle-software.onrender.com",
+            "http://localhost:5173"
+        ],
+        "supports_credentials": True,
+        "allow_headers": ["Authorization", "Content-Type"],
+        "methods": ["GET", "POST", "PUT", "DELETE", "OPTIONS"]
+    }
+})
+
 
 # ---------------- HELPERS ----------------
 def allowed_file(filename):

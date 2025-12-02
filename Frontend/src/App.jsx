@@ -12,7 +12,7 @@ import Login from "./pages/Login";
 import Register from "./pages/Register";
 import Upload from "./pages/Upload";
 import Search from "./pages/Search";
-import Selected from "./pages/Selected";
+import Selected from "./pages/selected";
 import History from "./pages/History";
 import Forgot from "./pages/Forgot";
 import ResetPassword from "./pages/ResetPassword";
