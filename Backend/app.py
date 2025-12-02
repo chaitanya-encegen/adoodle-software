@@ -97,12 +97,20 @@ def create_app(db_path=f"sqlite:///{DB_PATH}"):
 
     return app
 
-    app = create_app()
-    
-CORS(app, resources={r"/*": {"origins": [
-    "https://adoodle-software.onrender.com",
-    "https://adoodle-backend.onrender.com"
-]}})
+app = create_app()
+
+CORS(app, resources={
+    r"/*": {
+        "origins": [
+            "https://adoodle-software.onrender.com",
+            "https://adoodle-backend.onrender.com",
+            "http://localhost:5173"
+        ],
+        "supports_credentials": True,
+        "allow_headers": ["Authorization", "Content-Type"],
+        "methods": ["GET", "POST", "PUT", "DELETE", "OPTIONS"]
+    }
+})
 
 def cleanup_old_files():
     from app import app  # important: get the running app instance
