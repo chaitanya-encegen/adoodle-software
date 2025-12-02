@@ -97,6 +97,13 @@ def create_app(db_path=f"sqlite:///{DB_PATH}"):
 
     return app
 
+    app = create_app()
+    
+CORS(app, resources={r"/*": {"origins": [
+    "https://adoodle-software.onrender.com",
+    "https://adoodle-backend.onrender.com"
+]}})
+
 def cleanup_old_files():
     from app import app  # important: get the running app instance
 
@@ -136,11 +143,7 @@ def start_cleanup_thread():
             sleep(24 * 60 * 60)   # run once per day
     Thread(target=worker, daemon=True).start()
 
-app = create_app()
-CORS(app, resources={r"/*": {"origins": [
-    "https://adoodle-software.onrender.com",
-    "https://adoodle-backend.onrender.com"
-]}})
+
 
 # ---------------- HELPERS ----------------
 def allowed_file(filename):
