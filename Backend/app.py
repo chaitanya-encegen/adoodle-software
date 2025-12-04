@@ -5,7 +5,7 @@ from datetime import datetime, timedelta
 from io import BytesIO
 from functools import wraps
 
-from flask import Flask, request, jsonify, send_file, render_template, g
+from flask import Flask, request, jsonify, send_file, render_template, g, send_from_directory
 from flask_cors import CORS
 from sqlalchemy import text
 from werkzeug.utils import secure_filename
@@ -25,6 +25,7 @@ from flask import send_file
 from models import db, UploadedFile, Document, SelectedEntry, SearchHistory, User
 from extractor import extract_rows_from_excel
 
+
 # -----------------------------
 # Render Deployment Paths
 # -----------------------------
@@ -36,7 +37,7 @@ else:
     DB_ROOT = os.path.abspath(".")
 
 UPLOAD_FOLDER = os.path.join(DB_ROOT, "uploads")
-DB_PATH = os.path.join(DB_ROOT, "Adoodle.db")
+DB_PATH = os.path.join(DB_ROOT, "Adoodl.db")
 
 os.makedirs(UPLOAD_FOLDER, exist_ok=True)
 
@@ -49,32 +50,52 @@ JWT_EXP_DAYS = int(os.environ.get('JWT_EXP_DAYS', '7'))
 SUPER_ADMIN_EMAIL = os.environ.get('SUPER_ADMIN_EMAIL', 'admin@example.com')
 SUPER_ADMIN_PW = os.environ.get('SUPER_ADMIN_PW', 'admin123')
 
+
+
+# ===================================================================
+#  FLASK APP FACTORY + VITE (dist) FRONTEND SUPPORT
+# ===================================================================
 def create_app(db_path=f"sqlite:///{DB_PATH}"):
-    app = Flask(__name__, static_folder='static')
+
+    app = Flask(
+        __name__,
+        static_folder="dist/assets",     # <---- Vite assets
+        template_folder="dist"           # <---- index.html
+    )
+
+    # -----------------
+    # Config
+    # -----------------
     app.config.update(
         SQLALCHEMY_DATABASE_URI=db_path,
         SQLALCHEMY_TRACK_MODIFICATIONS=False,
         UPLOAD_FOLDER=UPLOAD_FOLDER
     )
 
+    # -----------------
+    # CORS
+    # -----------------
     CORS(app, resources={
-    r"/*": {
-        "origins": [
-            "https://adoodle-software.onrender.com",
-            "https://adoodle-backend.onrender.com",
-            "http://localhost:5173"
-        ],
-        "supports_credentials": True,
-        "allow_headers": ["Authorization", "Content-Type"],
-        "methods": ["GET", "POST", "PUT", "DELETE", "OPTIONS"]
-    }
-})
+        r"/*": {
+            "origins": [
+                "https://adoodle-software.onrender.com",
+                "https://adoodle-backend.onrender.com",
+                "http://localhost:5173"
+            ],
+            "supports_credentials": True,
+            "allow_headers": ["Authorization", "Content-Type"],
+            "methods": ["GET", "POST", "PUT", "DELETE", "OPTIONS"]
+        }
+    })
 
     db.init_app(app)
 
+    # -----------------------------
+    # DB + Super Admin Setup
+    # -----------------------------
     with app.app_context():
         db.create_all()
-        # create FTS virtual table if possible
+
         try:
             db.session.execute(text("""
                 CREATE VIRTUAL TABLE IF NOT EXISTS documents_fts 
@@ -91,26 +112,57 @@ def create_app(db_path=f"sqlite:///{DB_PATH}"):
             db.session.commit()
         except Exception as e:
             db.session.rollback()
-            print(" Warning: SQLite FTS5 not available:", e)
+            print("Warning: FTS5 unavailable:", e)
 
-        # Ensure a super-admin exists
         try:
             existing_admin = User.query.filter_by(is_admin=True).first()
             if not existing_admin:
-                pw = SUPER_ADMIN_PW
-                hashed = bcrypt.hashpw(pw.encode('utf-8'), bcrypt.gensalt()).decode('utf-8')
-                # leave expiry_date None for super-admin
-                admin = User(email=SUPER_ADMIN_EMAIL.lower(), password_hash=hashed, name="Super Admin", is_admin=True, is_active=True)
+                hashed = bcrypt.hashpw(SUPER_ADMIN_PW.encode(), bcrypt.gensalt()).decode()
+                admin = User(
+                    email=SUPER_ADMIN_EMAIL.lower(),
+                    password_hash=hashed,
+                    name="Super Admin",
+                    is_admin=True,
+                    is_active=True
+                )
                 db.session.add(admin)
                 db.session.commit()
-                print(f" Created super admin: {SUPER_ADMIN_EMAIL} (change password immediately)")
+                print(f"Super admin created: {SUPER_ADMIN_EMAIL}")
         except Exception as e:
             db.session.rollback()
-            print(" Could not create super admin:", e)
+            print("Super admin creation failed:", e)
 
     return app
 
+
+
+# ==========================================================
+# Create App Instance
+# ==========================================================
 app = create_app()
+
+
+
+# ==========================================================
+# Vite Frontend Routes (dist folder)
+# ==========================================================
+@app.route("/")
+def index():
+    return send_from_directory(app.template_folder, "index.html")
+
+
+@app.route("/assets/<path:path>")
+def assets(path):
+    return send_from_directory(app.static_folder, path)
+
+
+# React Router Catch-All (VERY IMPORTANT)
+@app.route("/<path:path>")
+def catch_all(path):
+    # Prevent overriding API routes
+    if path.startswith("api"):
+        return jsonify({"error": "API route not found"}), 404
+    return send_from_directory(app.template_folder, "index.html")
 
 
 
