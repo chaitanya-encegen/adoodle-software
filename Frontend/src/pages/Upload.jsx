@@ -1,6 +1,7 @@
 import React, { useState, useRef } from "react";
 import { authFetch } from "../auth";
 import { endpoints } from "../api";
+import { IoArrowForwardOutline } from "react-icons/io5";
 import "../styles/upload.css";
 
 export default function Upload() {
@@ -94,6 +95,10 @@ export default function Upload() {
         </div>
 
         <p className="upload-status">{status}</p>
+         <a href="/search" className="back-btn">
+              <IoArrowForwardOutline /> Go to search
+            </a>
+      </div>
       </div>
     </div>
   );
