@@ -25,23 +25,27 @@ export default function Register() {
     return null;
   }
 
-  async function handleSubmit(e) {
-    e.preventDefault();
-    try {
-      const res = await authFetch(endpoints.adminCreateUser, {
-        method: "POST",
-        body: form,
-      });
+ async function handleSubmit(e) {
+  e.preventDefault();
+  try {
+    const res = await authFetch(endpoints.adminCreateUser, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json"
+      },
+      body: JSON.stringify(form),
+    });
 
-      const data = await res.json();
-      if (!res.ok) return toast.error(data.error || "Error creating user");
+    const data = await res.json();
+    if (!res.ok) return toast.error(data.error || "Error creating user");
 
-      toast.success("User created");
-      navigate("/admin");
-    } catch (err) {
-      toast.error("Network error");
-    }
+    toast.success("User created");
+    navigate("/admin");
+  } catch (err) {
+    toast.error("Network error");
   }
+}
+
 
   return (
     <div className="register-container">
