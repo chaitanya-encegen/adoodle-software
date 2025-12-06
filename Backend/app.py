@@ -37,7 +37,7 @@ else:
     DB_ROOT = os.path.abspath(".")
 
 UPLOAD_FOLDER = os.path.join(DB_ROOT, "uploads")
-DB_PATH = os.path.join(DB_ROOT, "Adoodl.db")
+DB_PATH = os.path.join(DB_ROOT, "Adoodle.db")
 
 os.makedirs(UPLOAD_FOLDER, exist_ok=True)
 
