@@ -46,7 +46,6 @@ export default function App() {
         <Route path="/reset-password" element={<ResetPassword />} />
         <Route path="*" element={<Navigate to="/" />} />
       </Routes>
-          <Footer />
     </>
   );
 }
