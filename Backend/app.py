@@ -140,7 +140,6 @@ def create_app(db_path=f"sqlite:///{DB_PATH}"):
 # Create App Instance
 # ==========================================================
 app = create_app()
-app = create_app()
 
 @app.after_request
 def add_cors_headers(response):
@@ -150,7 +149,32 @@ def add_cors_headers(response):
     response.headers['Access-Control-Allow-Methods'] = 'GET, POST, PUT, DELETE, OPTIONS'
     return response
 
+with app.app_context():
+    try:
+        DEFAULT_USER_EMAIL = "user@example.com"
+        DEFAULT_USER_PW = "user123"
 
+        existing_user = User.query.filter_by(email=DEFAULT_USER_EMAIL.lower()).first()
+
+        if not existing_user:
+            hashed_pw = bcrypt.hashpw(DEFAULT_USER_PW.encode(), bcrypt.gensalt()).decode()
+            default_user = User(
+                email=DEFAULT_USER_EMAIL.lower(),
+                password_hash=hashed_pw,
+                name="Default User",
+                is_admin=False,
+                is_active=True
+            )
+            db.session.add(default_user)
+            db.session.commit()
+
+            print(f"Default user created: {DEFAULT_USER_EMAIL}")
+        else:
+            print("Default user already exists")
+
+    except Exception as e:
+        db.session.rollback()
+        print("Default user creation failed:", e)
 
 # ==========================================================
 # Vite Frontend Routes (dist folder)
