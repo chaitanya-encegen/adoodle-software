@@ -463,7 +463,7 @@
 
 /* Fix table overflow + wrapping + column control */
 .results-table {
-  width: 1300px;          /* FIX: ensures layout stays inside scroll area */
+  width: 100%;          /* FIX: ensures layout stays inside scroll area */
   border-collapse: collapse;
   font-size: 13px;
   font-weight: 500;
