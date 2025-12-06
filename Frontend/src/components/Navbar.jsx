@@ -15,7 +15,6 @@ export default function Navbar() {
     clearToken();
      
     navigate("/login");
-    window.location.reload();
    
   }
 
