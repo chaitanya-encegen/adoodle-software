@@ -20,7 +20,7 @@ export default function Navbar() {
 
   return (
     <div className="topbar">
-      <div className="brand">Adoodle</div>
+      <div className="brand">EasyHunt</div>
 
       <div style={{ display: "flex", gap: 18, alignItems: "center" }}>
         {!logged && (
