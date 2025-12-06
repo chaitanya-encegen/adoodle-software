@@ -42,24 +42,32 @@ export function getRole() {
 // Optional: Get entire user info (email, id, role)
 
 // Auth fetch with Authorization header
-export async function authFetch(url, opts = {}) {
-  opts.headers = opts.headers || {};
+export async function authFetch(url, options = {}) {
   const token = getToken();
 
-  if (token) opts.headers["Authorization"] = "Bearer " + token;
+  // MERGE HEADERS SAFELY
+  const mergedHeaders = {
+    ...(options.headers || {}),              // keep user headers
+    ...(token ? { Authorization: `Bearer ${token}` } : {}), // add token
+  };
 
+  // AUTO JSON STRINGIFY
   if (
-    opts.body &&
-    typeof opts.body === "object" &&
-    !(opts.body instanceof FormData) &&
-    !opts.headers["Content-Type"]
+    options.body &&
+    typeof options.body === "object" &&
+    !(options.body instanceof FormData)
   ) {
-    opts.headers["Content-Type"] = "application/json";
-    opts.body = JSON.stringify(opts.body);
+    mergedHeaders["Content-Type"] = mergedHeaders["Content-Type"] || "application/json";
+    options.body = JSON.stringify(options.body);
   }
 
-  return fetch(url, opts);
+  return fetch(url, {
+    ...options,
+    headers: mergedHeaders,
+    credentials: "include",   // required for CORS if cookies ever used
+  });
 }
+
 export function getUser() {
   const token = getToken();
   const payload = decodeToken(token);
