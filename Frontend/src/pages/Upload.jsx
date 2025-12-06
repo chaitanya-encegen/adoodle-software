@@ -99,7 +99,6 @@ export default function Upload() {
               <IoArrowForwardOutline /> Go to search
             </a>
       </div>
-      </div>
     </div>
   );
 }
